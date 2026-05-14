@@ -31,7 +31,7 @@ This project hosts a minimal web interface on a Raspberry Pi that allows a user 
 ```mermaid
 flowchart LR
 
-    subgraph PI["Controller(Raspberry Pi)"]
+    subgraph PI["Controller (Raspberry Pi)"]
         direction LR
         GPIO["GPIO17"]
         PIVCC["5V"]
@@ -47,14 +47,17 @@ flowchart LR
         NO["NO"]
     end
 
+    %% Low Voltage DC Connections
     GPIO --> IN
     PIVCC --> RVCC
     PIG --> RGND
 
+    %% Invisible link to force Relay to the right of the Pi
+    PI ~~~ RELAY
+
+    %% High Voltage AC Connections (Flowing Left to Right)
     ACL["AC Live"] --> SW["Hardware Safety Switch"]
     SW --> COM
-    COM --> NO
     NO --> LIGHT["Room Light"]
-
     ACN["AC Neutral"] --> LIGHT
 ```
