@@ -26,17 +26,20 @@ This project hosts a minimal web interface on a Raspberry Pi that allows a user 
 - Flask
 - gpiozero
 
-##circuit diagram
+## circuit diagram
+
 ```mermaid
 flowchart LR
 
-    subgraph Raspberry_Pi
-        GPIO17["GPIO17"]
-        VCC["5V"]
-        GND["GND"]
+    subgraph PI["Raspberry Pi"]
+        direction LR
+        GPIO["GPIO17"]
+        PIVCC["5V"]
+        PIG["GND"]
     end
 
-    subgraph Relay_Module
+    subgraph RELAY["Relay Module"]
+        direction LR
         IN["IN"]
         RVCC["VCC"]
         RGND["GND"]
@@ -44,14 +47,14 @@ flowchart LR
         NO["NO"]
     end
 
-    GPIO17 --> IN
-    VCC --> RVCC
-    GND --> RGND
+    GPIO --> IN
+    PIVCC --> RVCC
+    PIG --> RGND
 
-    ACLive["AC Live"] --> SafetySwitch["Hardware Safety Switch"]
-    SafetySwitch --> COM
+    ACL["AC Live"] --> SW["Hardware Safety Switch"]
+    SW --> COM
     COM --> NO
-    NO --> Light["Room Light"]
+    NO --> LIGHT["Room Light"]
 
-    ACNeutral["AC Neutral"] --> Light
-```
+    ACN["AC Neutral"] --> LIGHT
+```d
