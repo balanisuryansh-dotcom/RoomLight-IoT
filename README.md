@@ -26,15 +26,32 @@ This project hosts a minimal web interface on a Raspberry Pi that allows a user 
 - Flask
 - gpiozero
 
-## Project Structure
+##circuit diagram
+```mermaid
+flowchart LR
 
-```text
-Browser
-   ↓
-Flask Web Server
-   ↓
-GPIO Pin
-   ↓
-Relay Module
-   ↓
-Room Light
+    subgraph Raspberry_Pi
+        GPIO17["GPIO17"]
+        VCC["5V"]
+        GND["GND"]
+    end
+
+    subgraph Relay_Module
+        IN["IN"]
+        RVCC["VCC"]
+        RGND["GND"]
+        COM["COM"]
+        NO["NO"]
+    end
+
+    GPIO17 --> IN
+    VCC --> RVCC
+    GND --> RGND
+
+    ACLive["AC Live"] --> SafetySwitch["Hardware Safety Switch"]
+    SafetySwitch --> COM
+    COM --> NO
+    NO --> Light["Room Light"]
+
+    ACNeutral["AC Neutral"] --> Light
+```
