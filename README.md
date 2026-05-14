@@ -31,7 +31,7 @@ This project hosts a minimal web interface on a Raspberry Pi that allows a user 
 ```mermaid
 flowchart LR
 
-    subgraph PI["Raspberry Pi"]
+    subgraph PI["Controller(Raspberry Pi)"]
         direction LR
         GPIO["GPIO17"]
         PIVCC["5V"]
